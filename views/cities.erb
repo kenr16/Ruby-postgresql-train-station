@@ -1,0 +1,28 @@
+<h1><%= @message %></h1>
+
+<% if @cities.any?() %>
+  <h3>These are the cities currently in route:</h3>
+
+  <ul>
+    <% @cities.each() do |city| %>
+      <li><a href="/cities/<%= city.id()%>"><%= city.name() %></a> </li>
+    <% end %>
+  </ul>
+
+
+<% else %>
+
+    <p>There are no cities yet!</p>
+
+<% end %>
+
+
+
+<form action="/cities/new" method="post">
+  <div class="form-group">
+    <label for="city_name">Enter a name for the city:</label><br>
+    <input name="city_name" type="text" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add City</button>
+  <a href="/" class="btn btn-info">Back</a>
+</form>

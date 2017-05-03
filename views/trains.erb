@@ -1,0 +1,32 @@
+<h1><%= @message %></h1>
+
+<% if @trains.any?() %>
+  <h3>These are the trains currently in service:</h3>
+
+  <ul>
+    <% @trains.each() do |train| %>
+      <li><a href="/trains/<%= train.id()%>"><%= train.name() %></a> </li>
+    <% end %>
+  </ul>
+
+
+<% else %>
+
+    <p>There are no trains yet!</p>
+
+<% end %>
+
+
+
+<form action="/trains/new" method="post">
+  <div class="form-group">
+    <label for="train_name">Enter a name for the train:</label><br>
+    <input name="train_name" type="text" required>
+  </div>
+  <div class="form-group">
+    <label for="train_type">Enter a type for the train:</label><br>
+    <input name="train_type" type="text" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Train</button>
+  <a href="/" class="btn btn-info">Back</a>
+</form>
