@@ -5,7 +5,7 @@
 
   <ul>
     <% @trains.each() do |train| %>
-      <li><a href="/trains/<%= train.id()%>"><%= train.name() %></a> </li>
+      <li><a href="/trains/<%= train.id()%>"><%= train.name() %> <%= " - " %><%= train.type() %></a> </li>
     <% end %>
   </ul>
 

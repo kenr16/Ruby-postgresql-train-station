@@ -1,2 +1,5 @@
 <h1><%= @message %></h1>
 <h1><%= @train.name %></h1>
+
+<p><a href="/trains/<%= @train.id() %>/edit">Edit <%= @train.name() %> data</a></p>
+<p><a href="/">Return to Main Page</a></p>

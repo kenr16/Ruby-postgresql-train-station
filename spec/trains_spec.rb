@@ -68,6 +68,16 @@ describe("trains") do
     end
   end
 
+  describe("#update") do
+    it("lets you update trains in the database") do
+      train = Train.new({:name => "Midnight Express", :id => 1, :type => "Ghost Train"})
+      train.save()
+      train.update({:name => "Blue Thunder", :type => "Lumber Bucket"})
+      expect(train.name()).to(eq("Blue Thunder"))
+      expect(train.type()).to(eq("Lumber Bucket"))
+    end
+  end
+
 
 
 end

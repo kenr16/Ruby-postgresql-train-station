@@ -48,4 +48,12 @@ class Train
     found_stops
   end
 
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name)
+    @type = attributes.fetch(:type)
+    @id = self.id()
+    DB.exec("UPDATE trains SET name = '#{@name}' WHERE id = #{@id};")
+    DB.exec("UPDATE trains SET type = '#{@type}' WHERE id = #{@id};")
+  end
+
 end

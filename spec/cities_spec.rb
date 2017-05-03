@@ -51,6 +51,8 @@ describe("City") do
     it("returns an array of stops for this city") do
       city1 = City.new({:name => "Portland", :id => nil})
       city1.save()
+      stop1 = Stop.new({:id => 3, :name => "Green", :city_id => 15, :train_id => 1, :time => '2017-01-01 00:05:30'})
+      stop1.save()
       stop2 = Stop.new({:id => 2, :name => "Red", :city_id => city1.id(), :train_id => 1, :time => '2017-01-01 00:05:30'})
       stop2.save()
       stop3 = Stop.new({:id => 1, :name => "Blue", :city_id => city1.id(), :train_id => 2, :time => '2017-01-01 00:05:00'})
