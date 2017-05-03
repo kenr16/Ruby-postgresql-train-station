@@ -19,7 +19,7 @@ describe(Stop) do
 
   describe('#save') do
     it("adds a stop to the array of saved stops") do
-      test_stop = Stop.new({:id => 27, :name => "Blue", :city_id => 1, :train_id => 1, :time => '2017-01-01 00:05:00'})
+      test_stop = Stop.new({:id => nil, :name => "Blue", :city_id => 1, :train_id => 1, :time => '2017-01-01 00:05:00'})
       test_stop.save()
       expect(Stop.all()).to(eq([test_stop]))
     end

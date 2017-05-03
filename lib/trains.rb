@@ -38,4 +38,14 @@ class Train
     found_train
   end
 
+  define_method(:stops) do |train_id|
+    found_stops = []
+    Stop.all().each() do |stop|
+      if stop.train_id().==(train_id)
+        found_stops.push(stop)
+      end
+    end
+    found_stops
+  end
+
 end
