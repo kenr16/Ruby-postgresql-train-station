@@ -17,8 +17,14 @@ class City
     cities
   end
 
+  define_method(:==) do |another_city|
+    self.name().==(another_city.name()).&(self.id().==(another_city.id()))
+  end
+
   define_method(:save) do
     result = DB.exec("INSERT INTO cities (name) VALUES ('#{@name}') RETURNING id;")
-    @id = result.first().fetch("id").to_i()
+    @id = result.first.fetch("id").to_i()
   end
+
+
 end

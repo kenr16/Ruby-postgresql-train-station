@@ -19,4 +19,21 @@ describe("City") do
       expect(city.id()).to(be_an_instance_of(Fixnum))
     end
   end
+
+  describe("#==") do
+    it("is the same city if it has the same name and id") do
+      city1 = City.new({:name => "Portland", :id => nil})
+      city2 = City.new({:name => "Portland", :id => nil})
+      expect(city1).to(eq(city2))
+    end
+  end
+
+  describe("#save") do
+    it("lets you save the city to the database") do
+      city = City.new({:name => "Portland", :id => nil})
+      city.save()
+      expect(City.all()).to(eq([city]))
+    end
+  end
+
 end
