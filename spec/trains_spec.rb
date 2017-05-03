@@ -58,7 +58,7 @@ describe("trains") do
 
   describe("#stops") do
     it("returns an array of stops for this train") do
-      train1 = Train.new({:name => "Midnight Express", :id => nil, :type => "Ghost Train"})
+      train1 = Train.new({:name => "Midnight Express", :id => 1, :type => "Ghost Train"})
       train1.save()
       stop2 = Stop.new({:id => 2, :name => "Red", :city_id => 2, :train_id => train1.id(), :time => '2017-01-01 00:05:30'})
       stop2.save()

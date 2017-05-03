@@ -36,4 +36,14 @@ class City
     found_city
   end
 
+  define_method(:stops) do |city_id|
+    found_stops = []
+    Stop.all().each() do |stop|
+      if stop.city_id().==(city_id)
+        found_stops.push(stop)
+      end
+    end
+    found_stops
+  end
+
 end
