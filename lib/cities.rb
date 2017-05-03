@@ -46,4 +46,10 @@ class City
     found_stops
   end
 
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name)
+    @id = self.id()
+    DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
 end
