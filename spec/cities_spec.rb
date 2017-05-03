@@ -36,4 +36,14 @@ describe("City") do
     end
   end
 
+  describe(".find") do
+    it("returns a city by its ID") do
+      city1 = City.new({:name => "Portland", :id => nil})
+      city1.save()
+      city2 = City.new({:name => "Seattle", :id => nil})
+      city2.save()
+      expect(City.find(city2.id())).to(eq(city2))
+    end
+  end
+
 end
