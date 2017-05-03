@@ -1,0 +1,30 @@
+<h1><%= @message %></h1>
+
+<form action="/stops" method="post">
+
+  <label for="stop_name">Description of the stop:</label>
+  <input id="stop_name" name="stop_name" type="text">
+
+  <label for="train_id">Select a Train</label>
+  <select id='train_id' name='train_id' type='text'>
+    <% @trains.each() do |train| %>
+      <option value="<%= train.id()%>"> <%= train.name() %> </option>
+    <% end %>
+  </select>
+
+  <label for="city_id">Select a City</label>
+  <select id='city_id' name='city_id' type='text'>
+    <% @cities.each() do |city| %>
+      <option value="<%= city.id()%>"> <%= city.name() %> </option>
+    <% end %>
+  </select>
+
+  <label for="date">Date of the stop:</label>
+  <input id="date" name="date" type="date">
+
+  <label for="time">Time of the stop:</label>
+  <input id="time" name="time" type="time">
+
+  <button type="submit" class="btn btn-danger">Add Stop</button>
+  <a href="/" class="btn btn-info">Back</a>
+</form>

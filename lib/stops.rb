@@ -34,4 +34,16 @@ class Stop
     @id = result.first.fetch("id").to_i()
   end
 
+  define_method(:update) do |attributes|
+    @name = attributes.fetch(:name)
+    @city_id = attributes.fetch(:city_id)
+    @train_id = attributes.fetch(:train_id)
+    @time = attributes.fetch(:time)
+    @id = self.id()
+    DB.exec("UPDATE stops SET name = '#{@name}' WHERE id = #{@id};")
+    DB.exec("UPDATE stops SET name = '#{@city_id}' WHERE id = #{@id};")
+    DB.exec("UPDATE stops SET name = '#{@train_id}' WHERE id = #{@id};")
+    DB.exec("UPDATE stops SET name = '#{@time}' WHERE id = #{@id};")
+  end
+
 end

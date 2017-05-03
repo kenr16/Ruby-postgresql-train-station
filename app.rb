@@ -44,7 +44,7 @@ patch("/trains/:id") do
   type = params.fetch("train_type")
   @train = Train.find(params.fetch("id").to_i())
   @train.update({:name => name, :type => type})
-  @message = "Succesfully changes train data."
+  @message = "Succesfully changed train data."
   @trains = Train.all()
   erb(:trains)
 end
@@ -57,9 +57,9 @@ get("/cities") do
 end
 
 post("/cities/new") do
-    name = params.fetch("city_name")
-    train = City.new({:name => name, :id => nil})
-    train.save()
+    city_name = params.fetch("city_name")
+    city = City.new({:name => city_name, :id => nil})
+    city.save()
     @message = "Succesfully added new city."
     @cities = City.all()
   erb(:cities)
@@ -68,4 +68,40 @@ end
 get("/cities/:id") do
   @city = City.find(params.fetch("id").to_i())
   erb(:city)
+end
+
+get("/cities/:id/edit") do
+  @city = City.find(params.fetch("id").to_i())
+  erb(:city_edit)
+end
+
+patch("/cities/:id") do
+  city_name = params.fetch("city_name")
+  @city = City.find(params.fetch("id").to_i())
+  @city.update({:name => city_name})
+  @message = "Succesfully changed city data."
+  @cities = City.all()
+  erb(:cities)
+end
+
+get("/stops") do
+  @cities = City.all()
+  @trains = Train.all()
+  @message = "Add a new stop:"
+  erb(:stops)
+end
+
+post("/stops") do
+  stop_name = params.fetch("stop_name")
+  train_id = params.fetch("train_id")
+  city_id = params.fetch("city_id")
+  date = params.fetch("date")
+  time = params.fetch("time")
+  date_time = date.concat(" ") + time
+  new_stop = Stop.new({:id => nil, :name => stop_name, :train_id => train_id, :city_id => city_id, :time => date_time})
+  new_stop.save()
+  @cities = City.all()
+  @trains = Train.all()
+  @message = "Successfully added a new stop."
+  erb(:stops)
 end

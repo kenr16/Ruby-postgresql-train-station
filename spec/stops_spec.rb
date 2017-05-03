@@ -10,9 +10,9 @@ describe(Stop) do
 
   describe('#==') do
     it("is the same stop if it has the same name") do
-      stop1 = Stop.new({:id => 1, :name => "Blue", :city_id => 1, :train_id => 1, :time => '2017-01-01 00:05:00'})
-      stop2 = Stop.new({:id => 2, :name => "Red", :city_id => 2, :train_id => 3, :time => '2017-01-01 00:05:30'})
-      stop3 = Stop.new({:id => 1, :name => "Blue", :city_id => 1, :train_id => 1, :time => '2017-01-01 00:05:00'})
+      stop1 = Stop.new({:id => 1, :name => "Blue", :city_id => 1, :train_id => 1, :time => '2017-01-01 00:05'})
+      stop2 = Stop.new({:id => 2, :name => "Red", :city_id => 2, :train_id => 3, :time => '2017-01-01 00:05'})
+      stop3 = Stop.new({:id => 1, :name => "Blue", :city_id => 1, :train_id => 1, :time => '2017-01-01 00:05'})
       expect(stop1==stop3).to(eq(true))
     end
   end
@@ -40,6 +40,14 @@ describe(Stop) do
     end
   end
 
+  describe('#time') do
+    it("lets you view the stop's time") do
+      stop = Stop.new({:id => nil, :name => "Blue", :city_id => 1, :train_id => 1, :time => '2017-01-01 00:05'})
+      stop.save()
+      expect(stop.time()).to(eq("2017-01-01 00:05"))
+    end
+  end
+
   describe('#city_id') do
     it("lets you view the stop's city_id") do
       stop = Stop.new({:id => nil, :name => "Blue", :city_id => 101, :train_id => 1, :time => '2017-01-01 00:05:00'})
@@ -54,6 +62,13 @@ describe(Stop) do
     end
   end
 
-
+  describe("#update") do
+    it("lets you update trains in the database") do
+      stop = Stop.new({:id => nil, :name => "Blue", :city_id => 101, :train_id => 16, :time => '2017-01-01 00:05:00'})
+      stop.save()
+      stop.update({:id => nil, :name => "Burnside", :city_id => 101, :train_id => 16, :time => '2017-01-01 00:05:00'})
+      expect(stop.name()).to(eq("Burnside"))
+    end
+  end
 
 end
