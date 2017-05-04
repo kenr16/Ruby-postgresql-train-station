@@ -31,6 +31,8 @@ end
 
 get("/trains/:id") do
   @train = Train.find(params.fetch("id").to_i())
+  @message = "Welcome to the #{@train.name} line!  Proudly serving you!"
+  @stops = Stop.find_stops_for_train(@train.id)
   erb(:train)
 end
 
@@ -67,6 +69,8 @@ end
 
 get("/cities/:id") do
   @city = City.find(params.fetch("id").to_i())
+  @stops = Stop.find_stops_for_city(@city.id)
+  @message = "Welcome to #{@city.name}"
   erb(:city)
 end
 

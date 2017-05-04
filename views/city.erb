@@ -1,5 +1,21 @@
-<h1><%= @message %></h1>
 <h1><%= @city.name %></h1>
+<h2><%= @message %></h2>
 
-<p><a href="/cities/<%= @city.id() %>/edit">Edit <%= @city.name() %> data</a></p>
-<p><a href="/">Return to Main Page</a></p>
+<% if @stops.any?() %>
+  <h3>Here are all the stops for this city:</h3>
+  <ul>
+    <% @stops.each() do |stop| %>
+      <li> <%= stop.name %><%=" - "%><%= Train.find(stop.train_id).name %><%=" - "%><%= stop.time %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>There are no stops in this city currently.</p>
+<% end %>
+
+
+<p><a class="btn btn-success" href="/cities/<%= @city.id() %>/edit">Edit <%= @city.name() %> data</a></p>
+
+<p><a class="btn btn-info" href="/">Return to Main Page</a></p>
+
+<p><a class="btn btn-warning" href="/">Purchase a Ticket</a></p>

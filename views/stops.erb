@@ -3,7 +3,7 @@
 <form action="/stops" method="post">
 
   <label for="stop_name">Description of the stop:</label>
-  <input id="stop_name" name="stop_name" type="text">
+  <input id="stop_name" name="stop_name" type="text" required>
 
   <label for="train_id">Select a Train</label>
   <select id='train_id' name='train_id' type='text'>
@@ -20,10 +20,10 @@
   </select>
 
   <label for="date">Date of the stop:</label>
-  <input id="date" name="date" type="date">
+  <input id="date" name="date" type="date" required>
 
   <label for="time">Time of the stop:</label>
-  <input id="time" name="time" type="time">
+  <input id="time" name="time" type="time" required>
 
   <button type="submit" class="btn btn-danger">Add Stop</button>
   <a href="/" class="btn btn-info">Back</a>

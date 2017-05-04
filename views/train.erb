@@ -1,5 +1,17 @@
-<h1><%= @message %></h1>
 <h1><%= @train.name %></h1>
+<h2><%= @message %></h2>
+
+<% if @stops.any?() %>
+  <h3>Here are all the stops for this train:</h3>
+  <ul>
+    <% @stops.each() do |stop| %>
+      <li> <%= stop.name %><%=" - "%><%= City.find(stop.city_id).name %><%=" - "%><%= stop.time %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <p>This train is not currently in service.</p>
+<% end %>
 
 <p><a href="/trains/<%= @train.id() %>/edit">Edit <%= @train.name() %> data</a></p>
 <p><a href="/">Return to Main Page</a></p>

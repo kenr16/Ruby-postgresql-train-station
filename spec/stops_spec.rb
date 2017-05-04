@@ -71,4 +71,42 @@ describe(Stop) do
     end
   end
 
+  describe("#find_stops_for_city") do
+    it("lets you find all of the stops in a particular city") do
+      city1 = City.new({:name => "Portland", :id => nil})
+      city1.save()
+      city2 = City.new({:name => "Seattle", :id => nil})
+      city2.save()
+      train1 = Train.new({:name => "Midnight Express", :id => 5, :type => "Ghost Train"})
+      train1.save()
+      train2 = Train.new({:name => "Silver Bullet", :id => 5, :type => "Bullet Train"})
+      train2.save()
+      stop1 = Stop.new({:id => 1, :name => "Blue", :city_id => city1.id, :train_id => train1.id, :time => '2017-01-01 00:05:00'})
+      stop1.save()
+      stop2 = Stop.new({:id => 2, :name => "Red", :city_id => city2.id, :train_id => train2.id, :time => '2017-01-01 00:05:00'})
+      stop2.save()
+      expect(Stop.find_stops_for_city(city1.id)).to(eq([stop1]))
+    end
+  end
+
+  describe("#find_stops_for_train") do
+    it("lets you find all of the stops in a particular city") do
+      city1 = City.new({:name => "Portland", :id => nil})
+      city1.save()
+      city2 = City.new({:name => "Seattle", :id => nil})
+      city2.save()
+      train1 = Train.new({:name => "Midnight Express", :id => 5, :type => "Ghost Train"})
+      train1.save()
+      train2 = Train.new({:name => "Silver Bullet", :id => 5, :type => "Bullet Train"})
+      train2.save()
+      stop1 = Stop.new({:id => 1, :name => "Blue", :city_id => city1.id, :train_id => train1.id, :time => '2017-01-01 00:05:00'})
+      stop1.save()
+      stop2 = Stop.new({:id => 2, :name => "Red", :city_id => city2.id, :train_id => train2.id, :time => '2017-01-01 00:05:00'})
+      stop2.save()
+      stop3 = Stop.new({:id => 3, :name => "Green", :city_id => city1.id, :train_id => train2.id, :time => '2017-01-01 00:05:00'})
+      stop3.save()
+      expect(Stop.find_stops_for_train(train2.id)).to(eq([stop2, stop3]))
+    end
+  end
+
 end

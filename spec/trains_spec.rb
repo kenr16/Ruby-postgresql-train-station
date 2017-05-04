@@ -78,6 +78,18 @@ describe("trains") do
     end
   end
 
+  describe("#delete") do
+    it ("allows you to delete a city from the list of city") do
+      train1 = Train.new({:name => "Midnight Express", :id => 2, :type => "Ghost Train"})
+      train1.save()
+      train2 = Train.new({:name => "Star Tours", :id => 1, :type => "D3 cosmic transport"})
+      train2.save()
+      stop1 = Stop.new({:id => 2, :name => "Red", :city_id => 2, :train_id => train1.id(), :time => '2017-01-01 00:05:30'})
+      stop1.save()
+      train1.delete()
+      expect(Stop.all()).to(eq([]))
+    end
+  end
 
 
 end

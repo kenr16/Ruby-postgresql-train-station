@@ -52,4 +52,13 @@ class City
     DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{@id};")
   end
 
+
+
+
+
+
+
+
+
+
 end
