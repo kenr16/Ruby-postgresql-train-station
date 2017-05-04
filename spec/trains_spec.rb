@@ -87,6 +87,7 @@ describe("trains") do
       stop1 = Stop.new({:id => 2, :name => "Red", :city_id => 2, :train_id => train1.id(), :time => '2017-01-01 00:05:30'})
       stop1.save()
       train1.delete()
+      expect(Train.all()).to(eq([train2]))
       expect(Stop.all()).to(eq([]))
     end
   end

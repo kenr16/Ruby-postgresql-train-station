@@ -8,3 +8,9 @@
 
   <button type="submit">Update</button>
 </form>
+
+<form action="/cities/<%= @city.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete city</button>
+</form>

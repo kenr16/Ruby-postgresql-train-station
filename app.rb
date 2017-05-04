@@ -114,5 +114,12 @@ delete("/trains/:id") do
   @train = Train.find(params.fetch("id").to_i())
   @train.delete()
   @trains = Train.all()
-  erb(:index)
+  erb(:trains)
+end
+
+delete("/cities/:id") do
+  @city = City.find(params.fetch("id").to_i())
+  @city.delete()
+  @cities = City.all()
+  erb(:cities)
 end

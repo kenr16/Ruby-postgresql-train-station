@@ -52,6 +52,11 @@ class City
     DB.exec("UPDATE cities SET name = '#{@name}' WHERE id = #{@id};")
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM cities WHERE id = #{self.id()};")
+    DB.exec("DELETE FROM stops WHERE city_id = #{self.id()};")
+  end
+
 
 
 

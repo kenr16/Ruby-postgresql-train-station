@@ -70,6 +70,17 @@ describe("City") do
     end
   end
 
-  
-
+  describe("#delete") do
+    it("lets you delete a city from the database") do
+      city = City.new({:name => "Portland", :id => nil})
+      city.save()
+      city2 = City.new({:name => "Seattle", :id => nil})
+      city2.save()
+      stop1 = Stop.new({:id => 3, :name => "Green", :city_id => city2.id, :train_id => 1, :time => '2017-01-01 00:05:30'})
+      stop1.save()
+      city2.delete()
+      expect(City.all()).to(eq([city]))
+      expect(Stop.all()).to(eq([]))
+    end
+  end
 end
