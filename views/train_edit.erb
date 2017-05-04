@@ -11,3 +11,10 @@
 
   <button type="submit">Update</button>
 </form>
+
+
+<form action="/trains/<%= @train.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+
+  <button type="submit">Delete Train</button>
+</form>
