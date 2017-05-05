@@ -58,7 +58,7 @@ class Stop
       time = stop.fetch("time")
       stops.push(Stop.new({:id => id, :city_id => city_id, :train_id => train_id, :name => name, :time => time}))
     end
-    stops
+    stops.sort! { |a,b| a.time <=> b.time }
   end
 
   define_singleton_method(:find_stops_for_train) do |train_id|
@@ -73,7 +73,7 @@ class Stop
       time = stop.fetch("time")
       stops.push(Stop.new({:id => id, :city_id => city_id, :train_id => train_id, :name => name, :time => time}))
     end
-    stops
+    stops.sort! { |a,b| a.time <=> b.time }
   end
 
 end
